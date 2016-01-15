@@ -1,3 +1,5 @@
+WORK IN PROGRESS PEOPLE, sorry, I promis to update the readme soon! 
+
 # Introduction
 The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/. The plugin is interactive and was designed customizable to promote reusability.     
 
@@ -119,5 +121,6 @@ edges : {
 ‘’’
 
 
-# All VIS JS network Options can be found (but remember, some options are overwritten by the plugin!):
+# VIS options
+All VIS JS network Options can be found (but remember, some options are overwritten by the plugin!):
 http://visjs.org/docs/network/
