@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="../css/awesomplete.css" type="text/css" />
+  <link rel="stylesheet" href="../css/ontology_vis_plugin.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="../css/vis.css" type="text/css" />
+  <script src="../build/ols-graphview.js"></script>
+</head>
+<body>
+Demonstration of the Ontology visualisation: example 2 <br>
+<div id="ontology_vis">
+</div>
+
+
+<script>
+
+/* Example 2 with some more options in networkOptions. Visoptions is still empty. Again GO ontology, but with a different term for fun */
+var tmpnetworkOptions={
+  webservice : {URL: "http://www.ebi.ac.uk/ols/beta/api/ontologies/go/terms?iri=", OLSschema: true},
+      displayOptions : {showButtonBox:false, showInfoWindow:false, showLegend:false},
+      clusterOptions : {automaticClusterThreshold:10, parentClusterSymbole:"eclipse"},
+      appearance  :   {  colorMap: ['#00dAc7','#00fBb3'],
+      maxLabelLength :5
+    },
+
+  rootNode:{
+      color:{
+            border: '#A0A0FF',
+            background: '#00AAF0',
+          highlight: {
+            border: '#00AAF0',
+            background: '#00AAF1'},
+          hover: {
+              border: '#00AA4F',
+              background: '#00AA4F'    }
+            },
+      rootMass: 6,
+      connectingEdges: {
+          color:  "#AA00AA",
+          width:10 },
+    }
+    }
+
+    //Now we look for "cell part" in GO
+    var term='http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0044464'
+
+
+
+var app = require("ols-graphview");
+var instance = new app();
+
+visstart("ontology_vis", term, tmpnetworkOptions,{})
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="../css/awesomplete.css" type="text/css" />
+  <link rel="stylesheet" href="../css/ontology_vis_plugin.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="../css/vis.css" type="text/css" />
+  <script src="../build/ols-graphview.js"></script>
+</head>
+<body>
+Demonstration of the Ontology visualisation example 4 <br>
+<div id="ontology_vis">
+</div>
+
+
+<script>
+var tmpnetworkOptions={
+  webservice : {URL: "http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph", OLSschema: false},
+    displayOptions : {showButtonBox:true, showInfoWindow:false, showLegend:true},
+      callbacks: {
+              onSelectNode:function(params){console.log(params); alert("This is callback replacing the inital functionality")},
+              onDoubleClick:function(params){console.log(params); alert("WE did overwrite the DOUBLE click event as well")},
+              onSelectEdge:function(params){console.log(params); alert("Now you selected on an Edge")}
+      }
+    }
+
+var visoptions={
+      physics:{
+        forceAtlas2Based: {
+            gravitationalConstant: -50,
+            centralGravity: 0.01,
+            springConstant: 0.08,
+            springLength: 100,
+            damping: 0.4,
+            avoidOverlap: 0},
+            },
+      layout: {
+          hierarchical: false},
+      nodes:{borderWidth: 5,
+          shape: 'ellipse'},
+      edges:{
+              arrows:{middle:{enabled: true}},
+              dashes:true,
+              },
+
+    }
+
+    var term="Can be whatever at the moment - if you chose OLSschema false"
+
+    var app = require("ols-graphview");
+    var instance = new app();
+
+    visstart("ontology_vis", term, tmpnetworkOptions,visoptions);
+
+    /* Demonstration of public functions somebody might want to use*/
+    printMsg("Message from outside");
+    console.log(getExtendedNodes());
+    fetchNewGraphData("http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_15841/graph");
+    fetchNewGraphData("http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_23367/graph");
+
+</script>
+</body>
+</html>

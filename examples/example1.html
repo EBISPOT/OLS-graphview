@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="../css/awesomplete.css" type="text/css" />
+  <link rel="stylesheet" href="../css/ontology_vis_plugin.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="../css/vis.css" type="text/css" />
+  <script src="../build/ols-graphview.js"></script>
+</head>
+<body>
+Demonstration of the Ontology visualisation: example 1 <br>
+<div id="ontology_vis">
+</div>
+
+
+<script>
+
+var tmpnetworkOptions={ webservice : {URL: "http://www.ebi.ac.uk/ols/beta/api/ontologies/go/terms?iri=", OLSschema:true}}
+var term="http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0098630"
+
+
+var app = require("ols-graphview");
+var instance = new app();
+
+visstart("ontology_vis", term, tmpnetworkOptions,{})
+
+</script>
+
+
+</body>
+</html>

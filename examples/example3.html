@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="../css/awesomplete.css" type="text/css" />
+  <link rel="stylesheet" href="../css/ontology_vis_plugin.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="../css/vis.css" type="text/css" />
+  <script src="../build/ols-graphview.js"></script>
+</head>
+<body>
+Demonstration of the Ontology visualisation example 3<br>
+<div id="ontology_vis">
+</div>
+
+
+<script>
+
+
+/* Example 3. Minimum changes for networkOptions, but this time we pass some options into visoptions field. ALSO, this is no EFO ontology!*/
+
+    var tmpnetworkOptions={ webservice : {URL: "http://www.ebi.ac.uk/ols/beta/api/ontologies/efo/terms?iri=", OLSschema: true},
+      clusterOptions : {automaticClusterThreshold:10, parentClusterSymbole:"eclipse", parentClusterSymbole:"dot", childrenClusterSymbole:"triangle", otherClusterSymbole:"dot"},
+      rootNode:{rootMass:1}
+    }
+
+    var visoptions={
+      layout: {
+            hierarchical:  {direction: "LR", sortMethod: "hubsize"} },
+      nodes:{
+            borderWidth: 5,
+            mass:10,
+            shape: 'ellipse'},
+      edges:{
+            arrows:{middle:{enabled: true}},
+            dashes:true,
+            selectionWidth: 10,
+            },
+          }
+
+        //We look for "EFO-27" - human ovarian adenocarcinoma cell line
+        //Demonstration of how to encode the "iri" so it works
+        var term="http://www.ebi.ac.uk/efo/EFO_0006460"
+        term=encodeURIComponent(term);
+
+
+
+        var app = require("ols-graphview");
+        var instance = new app();
+
+        visstart("ontology_vis", term, tmpnetworkOptions,visoptions)
+
+
+
+</script>
+</body>
+</html>
