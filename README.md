@@ -1,5 +1,5 @@
 # Introduction to OLS-graphview 
-The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/. The plugin is interactive and was designed customizable to promote reusability.     
+The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/beta. The plugin is interactive and was designed customizable to promote reusability.     
 
 # How to install the plugin
 You can include the ols-graphview.js file to use the plugin. Soon it will be also available as npm package!
@@ -9,12 +9,8 @@ The Plugin has to be started with 3 parameters: term,  netwerkoptions, visoption
 However, some of the options are overwritten during plugin execution (Mainly options for the root nodes), they can be adjusted within the second option field (“network options”).
 
 # OLS - JSON structure:
-If the option OLS structure true is activated, the plugin expects the following structure:
-The service does one webservice call e.g.;
-http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_33839 - there is a link to the graph data included
-
-The second webservice call actually gets us graph data, e.g.
-http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph
+If the option OLS structure true is activated, the plugin expects a structure similar to the OLS REST API. This means that a first webservice call (e.g.;
+http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_33839 ) leads to a json which includes a link to the graph data. A second webservice call actually gets the graph data as json (e.g.: http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph ). To fetch data from other sources with a different structure is possible - check the examples - however the plugin expects the same names/structure within the json response as demonstrated in the second webservice call.
 
 
 # DEFAULT OPTIONS that the Plugin uses
@@ -126,5 +122,8 @@ Please check the examples to understand how to use your own options and how to o
 # License 
 The plugin is released under the Apache License Version 2.0. You can find more about it at http://www.apache.org/licenses/LICENSE-2.0 or within the license file of the repository.
 
-# visjs
-The plugin uses visjs as mention multiple times. The library has a lot more to offer than 'just' network graphs, so if you are interested, check it out at http://visjs.org.  
+# Dependencies
+* **JQuery:** Is used by the plugin (version 1.7+) https://jquery.com
+* **visjs:** The plugin uses visjs as mention multiple times. The library has a lot more to offer than 'just' network graphs, so if you are interested, check it out at http://visjs.org.  
+* **awesomeplete:** Is used as a autocomplete js library for the searchbox (https://leaverou.github.io/awesomplete/)
+
