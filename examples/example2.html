@@ -4,12 +4,18 @@
 <head>
   <meta charset="utf-8"/>
   <link rel="stylesheet" href="../css/awesomplete.css" type="text/css" />
-  <link rel="stylesheet" href="../css/ontology_vis_plugin.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="../css/vis.css" type="text/css" />
+  <link rel="stylesheet" href="../css/OLS-graphview.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="../css/vis.min.css" type="text/css" />
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="../build/ols-graphview.js"></script>
+
 </head>
 <body>
-Demonstration of the Ontology visualisation: example 2 <br>
+<div style="margin-bottom:30px">
+<h4>Demonstration of the ontology visualisation: example 2</h4>
+Example 2 demonstrates some more options, the additional windows (ButtonBox, Infowindow, showLegend) are deactivated and some other changes are made through the options e.g. the automatic Cluster Threshold as well as the symbole for parent clusters and other things (mass for nodes! Colors!) are changed. However, all changes are made in the networkOptions object and no changes to the visoptions are made yet. <br>
+</div>
 <div id="ontology_vis">
 </div>
 
@@ -45,7 +51,6 @@ var tmpnetworkOptions={
 
     //Now we look for "cell part" in GO
     var term='http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0044464'
-
 
 
 var app = require("ols-graphview");

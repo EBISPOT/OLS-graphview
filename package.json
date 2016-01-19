@@ -26,12 +26,11 @@
     "build": "mkdirp build && browserify -r ./:ols-graphview -o build/ols-graphview.js",
     "build-browser": "npm run build",
     "install": "npm run build",
-    "useGulp": "gulp uglify"
+    "uglify": "gulp uglify"
   },
   "dependencies": {
     "vis": "^4.10.0",
-    "underscore": "^1.7.0",
-    "jquery": "^1.5.0",
+    "jquery": "^1.7.0",
     "awesomplete": "^1.0.0"
   },
   "devDependencies": {

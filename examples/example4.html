@@ -4,12 +4,17 @@
 <head>
   <meta charset="utf-8"/>
   <link rel="stylesheet" href="../css/awesomplete.css" type="text/css" />
-  <link rel="stylesheet" href="../css/ontology_vis_plugin.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="../css/vis.css" type="text/css" />
+  <link rel="stylesheet" href="../css/OLS-graphview.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="../css/vis.min.css" type="text/css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="../build/ols-graphview.js"></script>
 </head>
 <body>
-Demonstration of the Ontology visualisation example 4 <br>
+
+<div style="margin-bottom:30px">
+<h4>Demonstration of the Ontology visualisation example 4</h4>
+Example 4 demonstrates changes to the physical layout as part of the visoptions. Even more important, it demonstrates the use of own call back functions for events defined in the networkOptions. Also the use of other exposed functions is demonstrated (print msg, fetch data).
+</div>
 <div id="ontology_vis">
 </div>
 
@@ -54,7 +59,7 @@ var visoptions={
     visstart("ontology_vis", term, tmpnetworkOptions,visoptions);
 
     /* Demonstration of public functions somebody might want to use*/
-    printMsg("Message from outside");
+    printMsg("Message from outside should demonstrate how to use the print function");
     console.log(getExtendedNodes());
     fetchNewGraphData("http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_15841/graph");
     fetchNewGraphData("http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_23367/graph");
