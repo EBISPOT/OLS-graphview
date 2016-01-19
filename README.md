@@ -1,9 +1,8 @@
-WORK IN PROGRESS PEOPLE, sorry, I promis to update the readme soon! 
-
-# Introduction
+# Introduction to OLS-graphview 
 The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/. The plugin is interactive and was designed customizable to promote reusability.     
 
-#How to install the plugin
+# How to install the plugin
+You can include the ols-graphview.js file to use the plugin. Soon it will be also available as npm package!
 
 #How to start to plugin
 The Plugin has to be started with 3 parameters: term,  netwerkoptions, visoptions. The visoptions are the options that the visjs library offers to the user.
@@ -19,8 +18,7 @@ http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.
 
 
 # DEFAULT OPTIONS that the Plugin uses
-/*Default options for the network – these are all options that this field offers at the moment!*/
-
+## Default options for the network
 ```javascript
 var visNetworkOptions = {
  		physics:{
@@ -61,9 +59,8 @@ var visNetworkOptions = {
 ```
 
 
-
-/*Define vis default options for ever network before start up*/ - these are the vis js options that are used at the moment. However, you could try to start it with many other
-vis js options!
+## Default visjs options
+These are the default visjs options that are used at the moment. However, you could try to start it with many other vis js options! All vis.js network Options can be found (but remember, some options are overwritten within the plugin! That is what we have the second option object for!): http://visjs.org/docs/network/
 
 ```javascript
 	var networkOptions = {
@@ -123,8 +120,11 @@ vis js options!
  		}
  	};
 ```
+## Customizing the options
+Please check the examples to understand how to use your own options and how to overwrite the default options with your own options. 
 
+# License 
+The plugin is released under the Apache License Version 2.0. You can find more about it at http://www.apache.org/licenses/LICENSE-2.0 or within the license file of the repository.
 
-# VIS options
-All VIS JS network Options can be found (but remember, some options are overwritten by the plugin!):
-http://visjs.org/docs/network/
+# visjs
+The plugin uses visjs as mention multiple times. The library has a lot more to offer than 'just' network graphs, so if you are interested, check it out at http://visjs.org.  
