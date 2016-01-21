@@ -1,4 +1,4 @@
-'''Note: OLS is still in beta. Therefore this is still in development and there might be changes happening.'''
+```Note: OLS is still in beta. Therefore this is still in development and there might be changes happening.```
 
 # Introduction to OLS-graphview
 The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/beta. The plugin is interactive and was designed customizable to promote reusability.     
