@@ -56,13 +56,16 @@ var visoptions={
     var app = require("ols-graphview");
     var instance = new app();
 
-    visstart("ontology_vis", term, tmpnetworkOptions,visoptions);
+    instance.visstart("ontology_vis", term, tmpnetworkOptions,visoptions);
 
     /* Demonstration of public functions somebody might want to use*/
-    printMsg("Message from outside should demonstrate how to use the print function");
-    console.log(getExtendedNodes());
-    fetchNewGraphData("http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_15841/graph");
-    fetchNewGraphData("http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_23367/graph");
+    instance.printMsg("Message from outside should demonstrate how to use the print function");
+    instance.fetchNewGraphData("http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_15841/graph");
+    instance.fetchNewGraphData("http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_23367/graph");
+
+    console.log(instance.getExtendedNodes());
+    console.log(instance.getRelationships());
+
 
 </script>
 </body>

@@ -1,4 +1,6 @@
-# Introduction to OLS-graphview 
+'''Note: OLS is still in beta. Therefore this is still in development and there might be changes happening.'''
+
+# Introduction to OLS-graphview
 The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/beta. The plugin is interactive and was designed customizable to promote reusability.     
 
 # How to install the plugin
@@ -117,13 +119,12 @@ These are the default visjs options that are used at the moment. However, you co
  	};
 ```
 ## Customizing the options
-Please check the examples to understand how to use your own options and how to overwrite the default options with your own options. 
+Please check the examples to understand how to use your own options and how to overwrite the default options with your own options.
 
-# License 
+# License
 The plugin is released under the Apache License Version 2.0. You can find more about it at http://www.apache.org/licenses/LICENSE-2.0 or within the license file of the repository.
 
 # Dependencies
 * **JQuery:** Is used by the plugin (version 1.7+) https://jquery.com
 * **visjs:** The plugin uses visjs as mention multiple times. The library has a lot more to offer than 'just' network graphs, so if you are interested, check it out at http://visjs.org.  
 * **awesomeplete:** Is used as a autocomplete js library for the searchbox (https://leaverou.github.io/awesomplete/)
-
