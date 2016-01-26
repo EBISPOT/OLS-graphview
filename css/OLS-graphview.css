@@ -18,6 +18,12 @@
 	float:right;
 }
 
+#labelPermaLinkBox{
+	width: 25%;
+	float:right;
+	margin-top:30px;
+}
+
 #buttonBoxWrapper
 {float:left;width:74%;}
 
@@ -41,13 +47,12 @@
 #SecondWindow{
 	width:74%;
 	float:left;
-	min-height:100px;
+	min-height:80px;
 	margin-top:10px;
 	border: 1px solid;
 	border-color: #337ab7;
 	border-radius: 5px;
 	margin-bottom:25px;
-
 }
 
 #infoWindow{
