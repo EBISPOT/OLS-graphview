@@ -8,57 +8,63 @@
   <link rel="stylesheet" href="../css/vis.min.css" type="text/css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="../build/ols-graphview.js"></script>
-
 </head>
 <body>
+
 <div style="margin-bottom:30px">
-<h4>Demonstration of the Ontology visualisation example 3</h4>
-Example 3 shows the ability of changing vis options. Therefore the shape of the nodes, as well as their border and mass are changed. Also the edges have their arrows not in the middle, they are dashed and their width is set to 10 if an edge is selected. <br>
-<strong>!</strong> This example is started with an hierarchical layout. If changes to the layout options are made, it is suggested to DEACTIVATE the buttonBox as well. Changes to the layout options brake the default button to switch layouts. If you want to use different layout options, please also implement an own function to switch between layouts. <strong>!</strong>
-<br>
-<strong>This example is not working at the moment - it breaks if you open up multiple nodes - it is unclear why at the moment, so just ignore it</strong>
+<h4>Demonstration of the Ontology visualisation example 4</h4>
+Example 4 demonstrates changes to the physical layout as part of the visoptions. Even more important, it demonstrates the use of own call back functions for events defined in the networkOptions. Also the use of other exposed functions is demonstrated (print msg, fetch data).
 </div>
 <div id="ontology_vis">
 </div>
 
 
 <script>
-
-
-/* Example 3. Minimum changes for networkOptions, but this time we pass some options into visoptions field. ALSO, this is no EFO ontology!*/
-
-    var tmpnetworkOptions={ webservice : {URL: "http://www.ebi.ac.uk/ols/beta/api/ontologies/efo/terms?iri=", OLSschema: true},
-          displayOptions : {showButtonBox:false, showInfoWindow:false, showLegend:true},
-          clusterOptions : {automaticClusterThreshold:10, parentClusterSymbole:"eclipse", parentClusterSymbole:"dot", childrenClusterSymbole:"triangle", otherClusterSymbole:"dot"},
-          rootNode:{rootMass:1}
+var tmpnetworkOptions={
+  webservice : {URL: "http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph", OLSschema: false},
+    displayOptions : {showButtonBox:true, showInfoWindow:false, showLegend:true},
+      callbacks: {
+              onSelectNode:function(params){console.log(params); alert("This is callback replacing the inital functionality")},
+              onDoubleClick:function(params){console.log(params); alert("WE did overwrite the DOUBLE click event as well")},
+              onSelectEdge:function(params){console.log(params); alert("Now you selected on an Edge")}
+      }
     }
 
-    var visoptions={
-      layout: {
-            hierarchical:  {enabled:true,  direction: "LR", sortMethod: "hubsize"} },
-      nodes:{
-            borderWidth: 5,
-            mass:10,
-            shape: 'ellipse'},
-      edges:{
-            arrows:{middle:{enabled: true}},
-            dashes:true,
-            selectionWidth: 10,
+var visoptions={
+      physics:{
+        forceAtlas2Based: {
+            gravitationalConstant: -50,
+            centralGravity: 0.01,
+            springConstant: 0.08,
+            springLength: 100,
+            damping: 0.4,
+            avoidOverlap: 0},
             },
-          }
+      layout: {
+          hierarchical: false},
+      nodes:{borderWidth: 5,
+          shape: 'ellipse'},
+      edges:{
+              arrows:{middle:{enabled: true}},
+              dashes:true,
+              },
 
-        //We look for "EFO-27" - human ovarian adenocarcinoma cell line
-        //Demonstration of how to encode the "iri" so it works
-        var term="http://www.ebi.ac.uk/efo/EFO_0006460"
-        term=encodeURIComponent(term);
+    }
 
+    var term="Can be whatever at the moment - if you chose OLSschema false"
 
+    var app = require("ols-graphview");
+    var instance = new app();
 
-        var app = require("ols-graphview");
-        var instance = new app();
+    instance.visstart("ontology_vis", term, tmpnetworkOptions,visoptions);
 
-        instance.visstart("ontology_vis", term, tmpnetworkOptions,visoptions)
+    /* Demonstration of public functions somebody might want to use*/
+    instance.printMsg("Message from outside should demonstrate how to use the print function");
+    instance.fetchNewGraphData("http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_15841/graph");
+    instance.fetchNewGraphData("http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_23367/graph");
 
+    console.log(instance.getExtendedNodes());
+    console.log(instance.getRelationships());
 
 
 </script>

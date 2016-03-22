@@ -21,16 +21,14 @@ This is an example with a minimum set of options, therefore demonstrating the 'd
 
 
 <script>
-
 var tmpnetworkOptions={ webservice : {URL: "http://www.ebi.ac.uk/ols/beta/api/ontologies/go/terms?iri=", OLSschema:true}}
-var term="http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FGO_0098630"
+var term="http://purl.obolibrary.org/obo/GO_0005578"
 
 
 var app = require("ols-graphview");
 var instance = new app();
 
 instance.visstart("ontology_vis", term, tmpnetworkOptions,{})
-
 </script>
 
 
