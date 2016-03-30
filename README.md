@@ -16,10 +16,11 @@ There are multiple ways to install the plugin:
   - The widget is listed on the <a href="http://www.biojs.io">bio.js website</a> where you could find other interesting visualisation for biological data
 
 # How to start to plugin
+```
 var app = require("ols-graphview");
 var instance = new app();
 instance.visstart("ontology_vis", term, networkOptions,{});
-
+```
 
 The Plugin has to be started with 4 parameters: "div-id", "term",  "networkoptions" and "visoptions".
 
