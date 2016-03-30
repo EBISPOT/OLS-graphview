@@ -6,29 +6,31 @@ The purpose of this plugin is to visualize ontologies, it is part of the new ver
 
 
 # How to use the plugin - user perspective
-The user help page, that also explains all functionality in detail, can be found here http://www.ebi.ac.uk/ols/beta/docs/graphview-help. I refuse to copy and paste it and make this file even longer.
+Please check the visualisation on the OLS page (see introduction). In addition, you can check the user help page, that also explains all functionality in detail. It can be found <a href="http://www.ebi.ac.uk/ols/beta/docs/graphview-help">here</a>. I refuse to copy and paste it and make this file even longer.
 
 
 # How to install the plugin - developer perspective
-There are multiple ways to install the plugin
-  - Download the javascript file (ols-graphview.js) stored in the 'build' folder. Include the file by using normal <script></script> tags. See the example html pages for more information.   
-  - The plugin in is available as npm module - search for ols-graphview or use this link (https://www.npmjs.com/package/ols-graphview)
-  - The widget is listed on the bio.js website (http://www.biojs.io) where you could find other interesting visualisation for biological data
+There are multiple ways to install the plugin:
+  - Download the javascript file (ols-graphview.js) stored in the 'build' folder. Include the file by using normal script tags. See the example html pages for more information   
+  - The plugin in is available as npm module - search for ols-graphview or use <a href="https://www.npmjs.com/package/ols-graphview">this link</a>
+  - The widget is listed on the <a href="http://www.biojs.io">bio.js website</a> where you could find other interesting visualisation for biological data
 
 # How to start to plugin
 var app = require("ols-graphview");
 var instance = new app();
-instance.visstart("ontology_vis", term, networkOptions,{})
+instance.visstart("ontology_vis", term, networkOptions,{});
 
 
-The Plugin has to be started with 4 parameters: "div-id", "term",  "networkptions" and "visoptions".
+The Plugin has to be started with 4 parameters: "div-id", "term",  "networkoptions" and "visoptions".
 
-- div-id: is the id of the <div> you want to display the visualisation. E.g. if your html page has a div with the id "ontology_vis" then you might want to pass this name to the plugin
-- term: represents the term id (URI) that you want to display, e.g. for the GO term "proteinaceous extracellular matrix" the term URI http://purl.obolibrary.org/obo/GO_0005578
-- This option field is the place to set options that are related to this plugin. The necessary things to set are the options for the webservice consisting of the webservice URL and the flag for the OLS data structure, e.g. networkOptions={ webservice : {URL: "http://www.ebi.ac.uk/ols/beta/api/ontologies/go/terms?iri=", OLSschema:true}}. All other potential options are described below.
-- The "visoptions" are the options that the visjs library offers to the user. Almost all options can be used and overwritten. However, some of the options are overwritten during plugin execution (Mainly options for the root nodes), they can be adjusted within the other option field (“network options”). If the visoption field is empty like in the example above (visoption={}), then the plugin is started with the default options.
+- *div-id:* is the id of the div you want to display the visualisation. E.g. if your html page has a div with the id "ontology_vis" then you might want to pass this name to the plugin
+- *term:* represents the term id (URI) that you want to display, e.g. for the GO term "proteinaceous extracellular matrix" the term URI http://purl.obolibrary.org/obo/GO_0005578
+- *networkoptions:* This option field is the place to set options that are related to this plugin. The necessary things to set are the options for the webservice consisting of the webservice URL and the flag for the OLS data structure, e.g. networkOptions={ webservice : {URL: "http://www.ebi.ac.uk/ols/beta/api/ontologies/go/terms?iri=", OLSschema:true}}. All other potential options are described below.
+- *visoptions:* The "visoptions" are the options that the visjs library offers to the user. Almost all options can be used and overwritten. However, some of the options are overwritten during plugin execution (Mainly options for the root nodes), they can be adjusted within the other option field (“network options”). If the visoption field is empty like in the example above (visoption={}), then the plugin is started with the default options.
 
-**The easiest way to get the plugin up and running is to connecting to EBI's OLS webservice. Check example 1 for more information. It is possible to use your own backend - however a certain structure is expected. So if you want to use your own backend, please read OLS - JSON structure**
+
+**NOTE: The easiest way to get the plugin up and running is to connecting to EBI's OLS webservice. Check example 1 for more information. It is possible to use your own backend - however a certain structure is expected. So if you want to use your own backend, please read OLS - JSON structure**
+
 
 
 # DEFAULT OPTIONS that the Plugin uses
@@ -144,7 +146,7 @@ If the option OLS structure true is activated, the plugin expects a structure si
 http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_33839 ) leads to a json which includes a link to the graph data. A second webservice call actually gets the graph data as json (e.g.: http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph ). To fetch data from other sources with a different structure is possible - check the examples - however the plugin expects the same names/structure within the json response as demonstrated in the *second* webservice call.
 
 # Contact
-Please use github (https://github.com/LLTommy/OLS-graphview) to report bugs, discuss potential new features or ask questions in general.
+Please <a href="https://github.com/LLTommy/OLS-graphview">use github</a> to report **bugs**, discuss potential **new features** or **ask questions** in general.
 
 # License
 The plugin is released under the Apache License Version 2.0. You can find out more about it at http://www.apache.org/licenses/LICENSE-2.0 or within the license file of the repository.
