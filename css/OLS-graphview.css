@@ -36,7 +36,7 @@
 
 #LookUpNodeTextfield{
  	position: relative;
-    top: 5px; /*To make the box align with the buttons*/
+    top: 0px; 
     /*Round corners ... if we want to have that */
     -webkit-border-radius: 5px;
 		-moz-border-radius: 5px;
@@ -68,7 +68,7 @@
 
 
 #ChangeLayout{
-	width: 120px;
+	width: 140px;
 	text-align: center;
 }
 
@@ -86,7 +86,6 @@
 	margin-bottom:20px;
 }
 
-.primary{
-	padding: 4px;
-	margin-right:10px
+.btn-default{
+	margin-right:5px
 }

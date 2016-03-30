@@ -1,23 +1,40 @@
-```Note: OLS is still in beta. Therefore this is still in development and there might be changes happening.```
+```Note: OLS is still in beta. Therefore it is still in development and also this plugin might change```
+
 
 # Introduction to OLS-graphview
-The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/beta. The plugin is interactive and was designed customizable to promote reusability.     
+The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/beta. Pick an ontology and select a term, then find the button "visualisation". The plugin is interactive and was designed customizable to promote reusability.     
 
-# How to install the plugin
-You can include the ols-graphview.js file to use the plugin. Soon it will be also available as npm package!
 
-#How to start to plugin
-The Plugin has to be started with 3 parameters: term,  netwerkoptions, visoptions. The visoptions are the options that the visjs library offers to the user.
-However, some of the options are overwritten during plugin execution (Mainly options for the root nodes), they can be adjusted within the second option field (“network options”).
+# How to use the plugin - user perspective
+The user help page, that also explains all functionality in detail, can be found here http://www.ebi.ac.uk/ols/beta/docs/graphview-help. I refuse to copy and paste it and make this file even longer.
 
-# OLS - JSON structure:
-If the option OLS structure true is activated, the plugin expects a structure similar to the OLS REST API. This means that a first webservice call (e.g.;
-http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_33839 ) leads to a json which includes a link to the graph data. A second webservice call actually gets the graph data as json (e.g.: http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph ). To fetch data from other sources with a different structure is possible - check the examples - however the plugin expects the same names/structure within the json response as demonstrated in the second webservice call.
+
+# How to install the plugin - developer perspective
+There are multiple ways to install the plugin
+  - Download the javascript file (ols-graphview.js) stored in the 'build' folder. Include the file by using normal <script></script> tags. See the example html pages for more information.   
+  - The plugin in is available as npm module - search for ols-graphview or use this link (https://www.npmjs.com/package/ols-graphview)
+  - The widget is listed on the bio.js website (http://www.biojs.io) where you could find other interesting visualisation for biological data
+
+# How to start to plugin
+var app = require("ols-graphview");
+var instance = new app();
+instance.visstart("ontology_vis", term, networkOptions,{})
+
+
+The Plugin has to be started with 4 parameters: "div-id", "term",  "networkptions" and "visoptions".
+
+- div-id: is the id of the <div> you want to display the visualisation. E.g. if your html page has a div with the id "ontology_vis" then you might want to pass this name to the plugin
+- term: represents the term id (URI) that you want to display, e.g. for the GO term "proteinaceous extracellular matrix" the term URI http://purl.obolibrary.org/obo/GO_0005578
+- This option field is the place to set options that are related to this plugin. The necessary things to set are the options for the webservice consisting of the webservice URL and the flag for the OLS data structure, e.g. networkOptions={ webservice : {URL: "http://www.ebi.ac.uk/ols/beta/api/ontologies/go/terms?iri=", OLSschema:true}}. All other potential options are described below.
+- The "visoptions" are the options that the visjs library offers to the user. Almost all options can be used and overwritten. However, some of the options are overwritten during plugin execution (Mainly options for the root nodes), they can be adjusted within the other option field (“network options”). If the visoption field is empty like in the example above (visoption={}), then the plugin is started with the default options.
+
+**The easiest way to get the plugin up and running is to connecting to EBI's OLS webservice. Check example 1 for more information. It is possible to use your own backend - however a certain structure is expected. So if you want to use your own backend, please read OLS - JSON structure**
 
 
 # DEFAULT OPTIONS that the Plugin uses
 ## Default options for the network
-```javascript
+
+```
 var visNetworkOptions = {
  		physics:{
  			barnesHut: {
@@ -58,9 +75,9 @@ var visNetworkOptions = {
 
 
 ## Default visjs options
-These are the default visjs options that are used at the moment. However, you could try to start it with many other vis js options! All vis.js network Options can be found (but remember, some options are overwritten within the plugin! That is what we have the second option object for!): http://visjs.org/docs/network/
+These are the default visjs options that are used at the moment. However, you could try to start it with many other visjs options! All visjs network Options can be found here http://visjs.org/docs/network/ (but remember, some options are overwritten within the plugin! That is what we have the second option object - network options - for!):
 
-```javascript
+```
 	var networkOptions = {
  		webservice : {URL: "no address passed", OLSschema: true},
  		displayOptions : {
@@ -118,13 +135,23 @@ These are the default visjs options that are used at the moment. However, you co
  		}
  	};
 ```
+
 ## Customizing the options
-Please check the examples to understand how to use your own options and how to overwrite the default options with your own options.
+*Please check the examples* to understand how to use your own options and how to overwrite the default options with your own options. Each example contains text that further explains what the example is supposed to show and tries to accomplish.  
+
+# OLS - JSON structure:
+If the option OLS structure true is activated, the plugin expects a structure similar to the OLS REST API. This means that a first webservice call (e.g.;
+http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_33839 ) leads to a json which includes a link to the graph data. A second webservice call actually gets the graph data as json (e.g.: http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph ). To fetch data from other sources with a different structure is possible - check the examples - however the plugin expects the same names/structure within the json response as demonstrated in the *second* webservice call.
+
+# Contact
+Please use github (https://github.com/LLTommy/OLS-graphview) to report bugs, discuss potential new features or ask questions in general.
 
 # License
-The plugin is released under the Apache License Version 2.0. You can find more about it at http://www.apache.org/licenses/LICENSE-2.0 or within the license file of the repository.
+The plugin is released under the Apache License Version 2.0. You can find out more about it at http://www.apache.org/licenses/LICENSE-2.0 or within the license file of the repository.
 
 # Dependencies
-* **JQuery:** Is used by the plugin (version 1.7+) https://jquery.com
-* **visjs:** The plugin uses visjs as mention multiple times. The library has a lot more to offer than 'just' network graphs, so if you are interested, check it out at http://visjs.org.  
-* **awesomeplete:** Is used as a autocomplete js library for the searchbox (https://leaverou.github.io/awesomplete/)
+* **JQuery:** Is used by the plugin (version 1.7+) https://jquery.com and therefor has to be available
+
+# Relying on
+* **visjs:** The plugin uses visjs as mention multiple times. The library has a lot more to offer than 'just' network graphs, so if you are interested, check it out at http://visjs.org. Since vis js is packed into the build/ols-graphview.js, you do not have to include it externally.
+* **awesomeplete:** Is used as a autocomplete js library for the searchbox (https://leaverou.github.io/awesomplete/). Awesomeplete is packed into the build/ols-graphview.js, you do not have to include it externally.
