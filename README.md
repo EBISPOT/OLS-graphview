@@ -1,8 +1,5 @@
-```Note: OLS is still in beta. Therefore it is still in development and also this plugin might change```
-
-
 # Introduction to OLS-graphview
-The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/beta. Pick an ontology and select a term, then find the button "visualisation". The plugin is interactive and was designed customizable to promote reusability.     
+The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/beta. Pick an ontology, select a term in the tree view, then find the button "visualisation" (<a href="http://www.ebi.ac.uk/ols/beta/ontologies/go/terms/graph?iri=http://purl.obolibrary.org/obo/GO_0005576">Shortcut</a>). The plugin is interactive and was designed customizable to promote reusability.     
 
 
 # How to use the plugin - user perspective
@@ -30,7 +27,7 @@ The Plugin has to be started with 4 parameters: "div-id", "term",  "networkoptio
 - *visoptions:* The "visoptions" are the options that the visjs library offers to the user. Almost all options can be used and overwritten. However, some of the options are overwritten during plugin execution (Mainly options for the root nodes), they can be adjusted within the other option field (“network options”). If the visoption field is empty like in the example above (visoption={}), then the plugin is started with the default options.
 
 
-**NOTE: The easiest way to get the plugin up and running is to connecting to EBI's OLS webservice. Check example 1 for more information. It is possible to use your own backend - however a certain structure is expected. So if you want to use your own backend, please read OLS - JSON structure**
+**NOTE: The easiest way to get the plugin up and running is to connect it to EBI's OLS webservice. Check example 1 for more information. It is possible to use your own backend - however a certain structure is expected. So if you want to use your own backend, please read the paragraph OLS - JSON structure**
 
 
 
@@ -39,104 +36,125 @@ The Plugin has to be started with 4 parameters: "div-id", "term",  "networkoptio
 
 ```
 var visNetworkOptions = {
- 		physics:{
- 			barnesHut: {
- 				gravitationalConstant: -2000,
- 				centralGravity: 0.3,
- 				springLength: 95,
- 				springConstant: 0.04,
- 				avoidOverlap: 0,
- 				damping: 0.09
- 			},
- 			stabilization: {
- 				enabled:true,
- 				iterations:2000,
- 				updateInterval:25}
- 		},
- 		interaction:{hover:true, navigationButtons:true, keyboard: false},
-    layout : { hierarchical: {  enabled:false} },
- 		nodes:{
- 			shape: "box",
- 			mass: 2
- 		},
- 		edges : {
- 			scaling:{label:{
- 				min:12,
- 				max:30,
- 				maxVisible:30,
- 				drawThreshold: 12
- 			}},
- 			hoverWidth: 2,
- 			width : 1.5,
- 			selectionWidth: 2,
- 			shadow:true,
- 			font: {align:"middle"},
- 			arrows: "to"
- 		}
- 	};
+  physics:{
+    barnesHut: {
+      gravitationalConstant: -2000,
+      centralGravity: 0.3,
+      springLength: 95,
+      springConstant: 0.04,
+      avoidOverlap: 0,
+      //springLength: 50,
+      //springConstant: 0.01,
+      //avoidOverlap: 0.1,
+      damping: 0.09
+    },
+    stabilization:  {
+          enabled:true,
+          iterations:200,
+          updateInterval:25}
+  },
+  interaction:{hover:true, navigationButtons:true, keyboard: false},
+  layout : { hierarchical: {  enabled:false} },
+  nodes:{
+    shape: "box",
+    mass: 2
+  },
+  edges : {
+    scaling:{label:{
+      min:12,
+      max:30,
+      maxVisible:30,
+      drawThreshold: 12
+    }},
+    hoverWidth: 2,
+    width : 1.5,
+    selectionWidth: 2,
+    shadow:true,
+    font: {align:"middle"},
+    arrows: "to"
+  }
+};
 ```
 
 
 ## Default visjs options
 These are the default visjs options that are used at the moment. However, you could try to start it with many other visjs options! All visjs network Options can be found here http://visjs.org/docs/network/ (but remember, some options are overwritten within the plugin! That is what we have the second option object - network options - for!):
 
+
 ```
-	var networkOptions = {
- 		webservice : {URL: "no address passed", OLSschema: true},
- 		displayOptions : {
- 			showButtonBox: true,
- 			showInfoWindow: true,
- 			showLegend: true
- 		},
- 		clusterOptions: {
- 			automaticClusterThreshold:50,
- 			parentClusterSymbole:"star",
- 			childrenClusterSymbole:"triangle",
- 			otherClusterSymbole:"dot",
- 			clusterMass:1,
- 			clusterMaxAppearanceSize: 50,
- 			clusterEdgeProperties:{physics:false, dashes:true, shadow:false}
- 		},
- 		appearance: {
- 			colorMap: ['#8dd3c7','#ffffb3','#bebada','#fba399','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5','#ffed6f',
- 				'#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99', "#e31a1c", '#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928',
- 				"#00FFFF", "#D9DCC6", "#FF7F50", "#6495ED", "#008B8B","#FF8C00","#FF1493", "#696969", "#FFD700", "#4B0082", "#808000", "#CD853F", "#B0E0E6", "#D8BFD8",
- 				"#00FFFF", "#D9DCC6", "#FF7F50", "#6495ED", "#008B8B","#FF8C00","#FF1493", "#696969", "#FFD700"],
- 			maxLabelLength: 35
- 		},
+var networkOptions = {
+  webservice : {URL: "no address passed", OLSschema: true},
+  displayOptions : {
+    showButtonBox: true,
+    showInfoWindow: true,
+    showLegend: true,
+    showListOfExtendedNodes: true,
+    showPermaLinkBox:true
+  },
+  dataOptions :{
+    showAllRelationships: false
+  },
+  clusterOptions: {
+    automaticClusterThreshold:50,
+    parentClusterSymbole:"star",
+    childrenClusterSymbole:"triangle",
+    otherClusterSymbole:"dot",
+    clusterMass:1,
+    clusterMaxAppearanceSize: 50,
+    clusterEdgeProperties:{physics:false, dashes:true, shadow:false}
+  },
+  appearance: {
+    colorMap: ['#8dd3c7','#ffffb3','#bebada','#fba399','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5','#ffed6f',
+      '#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99', "#e31a1c", '#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffff99','#b15928',
+      "#00FFFF", "#D9DCC6", "#FF7F50", "#6495ED", "#008B8B","#FF8C00","#FF1493", "#696969", "#FFD700", "#4B0082", "#808000", "#CD853F", "#B0E0E6", "#D8BFD8",
+      "#00FFFF", "#D9DCC6", "#FF7F50", "#6495ED", "#008B8B","#FF8C00","#FF1493", "#696969", "#FFD700"],
+    maxLabelLength: 35,
+    nodeShowLabel:true,
+    nodeShowShortId:true
+  },
 
- 		rootNode:{
- 			color:{
- 				border: '#000000',
- 				background: '#e06868',
- 				highlight: {
- 					border: '#000000',
- 					background: '#e06868'},
- 				hover: {
- 					border: '#000000',
- 					background: '#e06868'    }
- 			},
- 			rootMass:2,
- 			connectingEdges:{
- 				color : "#e06868",
- 				width : 2.5
- 			}
- 		},
+  rootNode:{
+    font:{size:14},
+    color:{
+      border: '#000000',
+      background: '#e06868',
+      highlight: {
+        border: '#000000',
+        background: '#e06868'},
+      hover: {
+        border: '#000000',
+        background: '#e06868'    }
+    },
+    rootMass:2,
+    connectingEdges:{
+      color : "#e06868",
+      width : 2.5
+    }
+  },
+  collapsedRootNode:{
+    font:{size:8},
+    color:{
+      border:'#FFAA00',
+      background: '#e06868',
+      highlight:{border:'#FFAA00', 	background: '#e06868',},
+      hover: {border: '#FFAA00', 	background: '#e06868',}
+      }
+  },
 
- 		ZoomOptions:{
- 			scale: 1.8,
- 			offset: {x:0,y:0},
- 			animation: {
- 				duration: 1000,
- 				easingFunction: "easeInOutQuad" }
- 		},
+  ZoomOptions:{
+    scale: 1.8,
+    offset: {x:0,y:0},
+    animation: {
+      duration: 1000,
+      easingFunction: "easeInOutQuad" }
+  },
 
- 		callbacks: {
- 			onSelectNode: onSelectNode,
- 			onDoubleClick: onDoubleClick,
- 			onSelectEdge: onSelectEdge
- 		}
- 	};
+  callbacks: {
+    onSelectNode: onSelectNode,
+    onDoubleClick: onDoubleClick,
+    onSelectEdge: onSelectEdge
+  }
+};
 ```
 
 ## Customizing the options
@@ -144,7 +162,7 @@ These are the default visjs options that are used at the moment. However, you co
 
 # OLS - JSON structure:
 If the option OLS structure true is activated, the plugin expects a structure similar to the OLS REST API. This means that a first webservice call (e.g.;
-http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_33839 ) leads to a json which includes a link to the graph data. A second webservice call actually gets the graph data as json (e.g.: http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph ). To fetch data from other sources with a different structure is possible - check the examples - however the plugin expects the same names/structure within the json response as demonstrated in the *second* webservice call.
+<a href="http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_33839">here</a> ) leads to a json which includes a link to the graph data. A second webservice call actually gets the graph data as json (e.g.: <a href="http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph">here</a> ). To fetch data from other sources with a different structure is possible - check example 3. In this case the first webservice call is obmitted. However the plugin expects the same names/structure within the json response as demonstrated in the *second* webservice call: It is necessary to have a nodes and edges object. Nodes have to be given an id or iri, an edge is defined by a source, a target and a label of the edge. Please check the link a couple of lines above this to see the structure!
 
 # Contact
 Please <a href="https://github.com/LLTommy/OLS-graphview">use github</a> to report **bugs**, discuss potential **new features** or **ask questions** in general.
