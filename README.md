@@ -112,7 +112,15 @@ var networkOptions = {
     nodeShowLabel:true,
     nodeShowShortId:true
   },
+  loadingBar :{
+    pictureURL: "../css/img/loading.gif",
+    initialLoadingPicture: true
+  },
+  hierarchicalLayoutVisOptions:{
+    physics:  {   hierarchicalRepulsion:{nodeDistance:200}  },
+    layout:   {   hierarchical: {direction:"DU", sortMethod:"directed"}}
 
+  },
   rootNode:{
     font:{size:14},
     color:{

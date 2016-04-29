@@ -13,6 +13,25 @@
 	float:left;
 }
 
+#spinner{
+	min-height:700px;
+	width:74%;
+	border:1px solid ;
+	border-color: #337ab7;
+	border-radius: 5px;
+	float:left;
+}
+
+#loadingIMG{
+	display:block;
+	margin:auto;
+	margin-top: 300px;
+	width:75px;
+	height: 75px;
+
+}
+
+
 #Legend{
 	width:25%;
 	float:right;
