@@ -1,3 +1,10 @@
+# Recent updates:
+## 29-04-2016
+  - Added some smaller options to the visualisation to make it more flexible (Flags: *showPermaLinkBox*, *nodeShowLabel*, *nodeShowShortId*) as well as smaller internal changes
+  - Added possibility of changing the hierarchical options independently of the rest (Flag: *hierarchicalLayoutVisOptions*)
+  - Added possibility to have a loading picture during start up of the network (Flag: *loadingBar*)
+  - Updated Readme File
+
 # Introduction to OLS-graphview
 The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/beta. Pick an ontology, select a term in the tree view, then find the button "visualisation" (<a href="http://www.ebi.ac.uk/ols/beta/ontologies/go/terms/graph?iri=http://purl.obolibrary.org/obo/GO_0005576">Shortcut</a>). The plugin is interactive and was designed customizable to promote reusability.     
 
@@ -43,9 +50,6 @@ var visNetworkOptions = {
       springLength: 95,
       springConstant: 0.04,
       avoidOverlap: 0,
-      //springLength: 50,
-      //springConstant: 0.01,
-      //avoidOverlap: 0.1,
       damping: 0.09
     },
     stabilization:  {
