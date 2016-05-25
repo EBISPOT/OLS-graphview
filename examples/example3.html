@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +20,7 @@ Example 4 demonstrates changes to the physical layout as part of the visoptions.
 
 <script>
 var tmpnetworkOptions={
-  webservice : {URL: "http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph", OLSschema: false},
+  webservice : {URL: "http://www.ebi.ac.uk/ols/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph", OLSschema: false},
     displayOptions : {showButtonBox:true, showInfoWindow:false, showLegend:true},
       callbacks: {
               onSelectNode:function(params){console.log(params); alert("This is callback replacing the inital functionality")},
@@ -60,8 +59,8 @@ var visoptions={
 
     /* Demonstration of public functions somebody might want to use*/
     instance.printMsg("Message from outside should demonstrate how to use the print function");
-    instance.fetchNewGraphData("http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_15841/graph");
-    instance.fetchNewGraphData("http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_23367/graph");
+    instance.fetchNewGraphData("http://www.ebi.ac.uk/ols/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_15841/graph");
+    instance.fetchNewGraphData("http://www.ebi.ac.uk/ols/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_23367/graph");
 
     console.log(instance.getExtendedNodes());
     console.log(instance.getRelationships());

@@ -1,4 +1,9 @@
 # Recent updates:
+## 24-05-2016
+  - Minor Bug fixes for npm dependencies
+  - Adjust the URL to the new OLS URL (getting rid of the beta)
+  - Fixing bug when option is set to 'initialLoadingPicture: false'
+
 ## 29-04-2016
   - Added some smaller options to the visualisation to make it more flexible (Flags: *showPermaLinkBox*, *nodeShowLabel*, *nodeShowShortId*) as well as smaller internal changes
   - Added possibility of changing the hierarchical options independently of the rest (Flag: *hierarchicalLayoutVisOptions*)
