@@ -1,4 +1,9 @@
 # Recent updates:
+## 08-06-2016
+  - Printing error message by default to the screen if data loading fails 
+  - Better handling of the loading picture
+  - Publishing on npm to keep git and npm in sync
+
 ## 24-05-2016
   - Minor Bug fixes for npm dependencies
   - Adjust the URL to the new OLS URL (getting rid of the beta)
