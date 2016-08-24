@@ -1,6 +1,9 @@
 # Recent updates:
+## 24-09-2016
+  - Adding the possibility to overwrite the onclick event 
+  - Update of the readme file
 ## 08-06-2016
-  - Printing error message by default to the screen if data loading fails 
+  - Printing error message by default to the screen if data loading fails
   - Better handling of the loading picture
   - Publishing on npm to keep git and npm in sync
 
@@ -198,3 +201,6 @@ The plugin is released under the Apache License Version 2.0. You can find out mo
 # Relying on
 * **visjs:** The plugin uses visjs as mention multiple times. The library has a lot more to offer than 'just' network graphs, so if you are interested, check it out at http://visjs.org. Since vis js is packed into the build/ols-graphview.js, you do not have to include it externally.
 * **awesomeplete:** Is used as a autocomplete js library for the searchbox (https://leaverou.github.io/awesomplete/). Awesomeplete is packed into the build/ols-graphview.js, you do not have to include it externally.
+
+# If you are interested in this plugin...
+...you might also want to have a look at the *ols-treeview* package as well, see <a href="https://github.com/LLTommy/OLS-treeview">Github</a> or <a href="https://www.npmjs.com/package/ols-treeview">npm</a>
