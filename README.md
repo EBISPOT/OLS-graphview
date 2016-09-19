@@ -1,6 +1,7 @@
 # Recent updates:
 ## 19-09-2016
-  - Adding the possibility to overwrite the function unclusterSingeCluster (that enables you to uncluster one single node)
+  - Adding the possibility to overwrite the function unclusterSingleCluster (that enables you to un-cluster one single node)
+  - Added a small example for overwriting the new exposed function "unclusterSingleCluster"
   - updates to the readme file
 
 ## 24-08-2016
