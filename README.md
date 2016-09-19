@@ -1,7 +1,6 @@
 # Recent updates:
 ## 19-09-2016
-  - Adding the possibility to overwrite the function unclusterSingleCluster (that enables you to un-cluster one single node)
-  - Added a small example for overwriting the new exposed function "unclusterSingleCluster"
+  - Adding the possibility to use the unclusterANode (that enables you to un-cluster one single node)
   - updates to the readme file
 
 ## 24-08-2016
@@ -183,8 +182,7 @@ var networkOptions = {
     onSelectNode: onSelectNode,
     onDoubleClick: onDoubleClick,
     onSelectEdge: onSelectEdge,
-    onClick: onClick,
-    unclusterSingeCluster: unclusterSingeCluster
+    onClick: onClick
   }
 };
 ```
