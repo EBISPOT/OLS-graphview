@@ -1,6 +1,10 @@
 # Recent updates:
-## 24-09-2016
-  - Adding the possibility to overwrite the onclick event 
+## 19-09-2016
+  - Adding the possibility to overwrite the function unclusterSingeCluster (that enables you to uncluster one single node)
+  - updates to the readme file
+
+## 24-08-2016
+  - Adding the possibility to overwrite the onclick event
   - Update of the readme file
 ## 08-06-2016
   - Printing error message by default to the screen if data loading fails
