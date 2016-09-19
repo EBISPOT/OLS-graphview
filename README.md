@@ -60,40 +60,40 @@ The Plugin has to be started with 4 parameters: "div-id", "term",  "networkoptio
 
 ```
 var visNetworkOptions = {
-  physics:{
-    barnesHut: {
-      gravitationalConstant: -2000,
-      centralGravity: 0.3,
-      springLength: 95,
-      springConstant: 0.04,
-      avoidOverlap: 0,
-      damping: 0.09
-    },
-    stabilization:  {
-          enabled:true,
-          iterations:200,
-          updateInterval:25}
-  },
-  interaction:{hover:true, navigationButtons:true, keyboard: false},
-  layout : { hierarchical: {  enabled:false} },
-  nodes:{
-    shape: "box",
-    mass: 2
-  },
-  edges : {
-    scaling:{label:{
-      min:12,
-      max:30,
-      maxVisible:30,
-      drawThreshold: 12
-    }},
-    hoverWidth: 2,
-    width : 1.5,
-    selectionWidth: 2,
-    shadow:true,
-    font: {align:"middle"},
-    arrows: "to"
-  }
+ physics:{
+   barnesHut: {
+     gravitationalConstant: -2000,
+     centralGravity: 0.3,
+     springLength: 95,
+     springConstant: 0.04,
+     avoidOverlap: 0,
+     damping: 0.09
+   },
+   stabilization:  {
+         enabled:true,
+         iterations:250,
+         updateInterval:25}
+ },
+ interaction:{hover:true, navigationButtons:true, keyboard: false},
+ layout : { hierarchical: {  enabled:false} },
+ nodes:{
+   shape: "box",
+   mass: 2
+ },
+ edges : {
+   scaling:{label:{
+     min:12,
+     max:30,
+     maxVisible:30,
+     drawThreshold: 12
+   }},
+   hoverWidth: 2,
+   width : 1.5,
+   selectionWidth: 2,
+   shadow:true,
+   font: {align:"middle"},
+   arrows: "to"
+ }
 };
 ```
 
@@ -181,7 +181,9 @@ var networkOptions = {
   callbacks: {
     onSelectNode: onSelectNode,
     onDoubleClick: onDoubleClick,
-    onSelectEdge: onSelectEdge
+    onSelectEdge: onSelectEdge,
+    onClick: onClick,
+    unclusterSingeCluster: unclusterSingeCluster
   }
 };
 ```
