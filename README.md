@@ -1,6 +1,10 @@
 # Recent updates:
+## 09-01-2017
+  - Renaming of the pysics button text
+  - Getting rid of a small bug that lead to an error msg be printed if the search was used but no 'informationWindow' was present  
+
 ## 19-09-2016
-  - Adding the possibility to use the unclusterANode (that enables you to un-cluster one single node)
+  - Adding the possibility to use the unclusterANode from outside (this function enables you to un-cluster one single node)
   - updates to the readme file
 
 ## 24-08-2016
@@ -23,11 +27,11 @@
   - Updated Readme File
 
 # Introduction to OLS-graphview
-The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/beta. Pick an ontology, select a term in the tree view, then find the button "visualisation" (<a href="http://www.ebi.ac.uk/ols/beta/ontologies/go/terms/graph?iri=http://purl.obolibrary.org/obo/GO_0005576">Shortcut</a>). The plugin is interactive and was designed customizable to promote reusability.     
+The purpose of this plugin is to visualize ontologies, it is part of the new version of Ontology Lookup Service (OLS), provided by the EBI (European Bioinformatics Institute), that can be found at http://www.ebi.ac.uk/ols/beta. Pick an ontology, select a term in the tree view, then find the button "visualisation" (<a href="http://www.ebi.ac.uk/ols/beta/ontologies/go/terms/graph?iri=http://purl.obolibrary.org/obo/GO_0005576">Shortcut</a>). The plugin is interactive and was designed customizable to promote reusability. The reusability is demonstrated by the fact, that the the plugin is now also used by EBI's <a href='http://www.ebi.ac.uk/biosamples/'>Biosamples Database</a> to visualize Sample and group relationships (instead of ontology terms).
 
 
 # How to use the plugin - user perspective
-Please check the visualisation on the OLS page (see introduction). In addition, you can check the user help page, that also explains all functionality in detail. It can be found <a href="http://www.ebi.ac.uk/ols/beta/docs/graphview-help">here</a>. I refuse to copy and paste it and make this file even longer.
+Please check the visualisation on the OLS page (see introduction). All buttons have tooltips, so it should be possible to explore the functionality quite easily with some patience. In addition, you can check the user help page, that also explains all functionality in detail. It can be found <a href="http://www.ebi.ac.uk/ols/docs/graphview-help">here</a>. I refuse to copy and paste the text and make this readme file even longer - so go there to check it out please.
 
 
 # How to install the plugin - developer perspective
@@ -204,7 +208,7 @@ The plugin is released under the Apache License Version 2.0. You can find out mo
 * **JQuery:** Is used by the plugin (version 1.7+) https://jquery.com and therefor has to be available
 
 # Relying on
-* **visjs:** The plugin uses visjs as mention multiple times. The library has a lot more to offer than 'just' network graphs, so if you are interested, check it out at http://visjs.org. Since vis js is packed into the build/ols-graphview.js, you do not have to include it externally.
+* **visjs:** The plugin uses visjs as mention multiple times. The library has a lot more to offer than 'just' network graphs, so if you are interested, check it out at http://visjs.org. Since visjs is packed into the build/ols-graphview.js, you do not have to include it externally.
 * **awesomeplete:** Is used as a autocomplete js library for the searchbox (https://leaverou.github.io/awesomplete/). Awesomeplete is packed into the build/ols-graphview.js, you do not have to include it externally.
 
 # If you are interested in this plugin...
