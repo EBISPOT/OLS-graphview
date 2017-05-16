@@ -1,6 +1,9 @@
 # Recent updates:
+## 16-05-2017
+  - Adding a new function to overwrite - getGraphDataset() - and a new example to demonstrate the evil things you can do with this functionality
+
 ## 09-01-2017
-  - Renaming of the pysics button text
+  - Renaming of the physics button text
   - Getting rid of a small bug that lead to an error msg be printed if the search was used but no 'informationWindow' was present  
   - Adding the parameter 'maximumNodesPerWebserviceCall' which prints a message to the screen if the number of results are equal/bigger than the parameter. This is done to inform the user about missing data (There is a maximum number of nodes that the webservice returns)
 

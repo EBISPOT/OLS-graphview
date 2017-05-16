@@ -1,7 +1,7 @@
 {
   "name": "ols-graphview",
   "description": "This widget is a flexible and dynamic ontology visualisation. It can be seen in action on the new Ontology Lookup Service (OLS) provided by the EMBL-EBI.",
-  "version": "0.1.87",
+  "version": "0.1.9",
   "homepage": "https://github.com/LLTommy/ols-graphview",
   "author": {
     "name": "lltommy",
