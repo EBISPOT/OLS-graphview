@@ -24,9 +24,9 @@ var tmpnetworkOptions={
   webservice : {URL: "http://www.ebi.ac.uk/ols/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph", OLSschema: false},
     displayOptions : {showButtonBox:true, showInfoWindow:false, showLegend:true},
       callbacks: {
-              //onSelectNode:function(params){console.log(params); alert("This is callback replacing the inital functionality - onSelectNode")},
+              onSelectNode:function(params){console.log(params); alert("This is callback replacing the inital functionality - onSelectNode")},
               onDoubleClick:function(params){console.log(params); alert("WE did overwrite the DOUBLE click event as well")},
-              //onSelectEdge:function(params){console.log(params); alert("Now you selected on an Edge - event:onSelectEdge")},
+              onSelectEdge:function(params){console.log(params); alert("Now you selected on an Edge - event:onSelectEdge")},
               onClick:function(params){console.log(params); alert("You clicked somewhere in the graph! - onClick event (single)")}
       }
     }
