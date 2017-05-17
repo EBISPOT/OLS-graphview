@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="../css/awesomplete.css" type="text/css" />
+  <link rel="stylesheet" href="../css/OLS-graphview.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="../css/vis.min.css" type="text/css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="../build/ols-graphview.js"></script>
+</head>
+<body>
+
+<div style="margin-bottom:30px">
+<h4>Demonstration of the Ontology visualisation example 4</h4>
+Example 4 demonstrates the exposed functions getExtendedNodes, getRelationships as well as getGraphDataset - which allows the user to change the data and the layout of nodes/edges from the outside.
+
+<br><br>Questions, issues, bug reports or general feedback? Please use <a href='https://github.com/LLTommy/OLS-graphview'>github</a>
+</div>
+<div id="ontology_vis">
+</div>
+
+
+<script>
+var tmpnetworkOptions={
+  webservice : {URL: "http://www.ebi.ac.uk/ols/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph", OLSschema: false},
+    displayOptions : {showButtonBox:true, showInfoWindow:false, showLegend:true},
+      callbacks: {
+              //onSelectNode:function(params){console.log(params); alert("This is callback replacing the inital functionality - onSelectNode")},
+              onDoubleClick:function(params){console.log(params); alert("WE did overwrite the DOUBLE click event as well")},
+              //onSelectEdge:function(params){console.log(params); alert("Now you selected on an Edge - event:onSelectEdge")},
+              onClick:function(params){console.log(params); alert("You clicked somewhere in the graph! - onClick event (single)")}
+      }
+    }
+
+var visoptions={
+      physics:{
+        forceAtlas2Based: {
+            gravitationalConstant: -50,
+            centralGravity: 0.01,
+            springConstant: 0.08,
+            springLength: 100,
+            damping: 0.4,
+            avoidOverlap: 0},
+            },
+      layout: {
+          hierarchical: false},
+      nodes:{borderWidth: 5,
+          shape: 'ellipse'},
+      edges:{
+              arrows:{middle:{enabled: true}},
+              dashes:true,
+              },
+
+    }
+
+    var term="Can be whatever at the moment - if you chose OLSschema false"
+
+    var app = require("ols-graphview");
+    var instance = new app();
+
+    instance.visstart("ontology_vis", term, tmpnetworkOptions,visoptions);
+
+    /* Demonstration of public functions somebody might want to use*/
+    instance.printMsg("Message from outside should demonstrate how to use the print function");
+    instance.fetchNewGraphData("http://www.ebi.ac.uk/ols/api/ontologies/ordo/terms/http%253A%252F%252Fwww.orpha.net%252FORDO%252FOrphanet_950/graph")
+
+
+    /* This is wrapped in a timeOut function, so the data is loaded before this is executed! Be aware of asynchronious behavior if strange things happen! */
+    window.setTimeout(function(){
+      console.log("Following are objects that could be of interest")
+      console.log("List of extended Nodes")
+      console.log(instance.getExtendedNodes());
+      console.log("List of Relationships")
+      console.log(instance.getRelationships());
+
+      console.log("Get the whole DataSet that defines the graph and manipulate it!")
+      var x=instance.getGraphDataset()
+      console.log(x);
+      //Be aware that dataSets update automatically. Therefore no setGraphDataset is necessary! Also keep in mind that here you can destroy the funcionality of the network!
+      //Be aware that x is a vis.js dataSet - To manipulate you have to use respective methods! See http://visjs.org/docs/data/dataset.html
+      x["nodes"].update({id: "http://purl.obolibrary.org/obo/CHEBI_33839", label: "This LABEL was changed after the dataset was loaded initially!"})
+    },3000);
+
+
+</script>
+</body>
+</html>
