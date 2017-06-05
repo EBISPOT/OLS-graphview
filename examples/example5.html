@@ -12,7 +12,7 @@
 
 <div style="margin-bottom:30px">
 <h4>Demonstration of the Ontology visualisation example 4</h4>
-Example 4 demonstrates the exposed functions getExtendedNodes, getRelationships as well as getGraphDataset - which allows the user to change the data and the layout of nodes/edges from the outside.
+Example 5 is very similar to number 4, but it demonstartes the new function getNetwork(). Calling this function returns the visjs network and enables to use all its functions and manipulate the network. Of course, this can interfer with the rest of the functionality off the plugin. A lot.
 
 <br><br>Questions, issues, bug reports or general feedback? Please use <a href='https://github.com/LLTommy/OLS-graphview'>github</a>
 </div>
@@ -64,22 +64,26 @@ var visoptions={
     instance.printMsg("Message from outside should demonstrate how to use the print function");
     instance.fetchNewGraphData("http://www.ebi.ac.uk/ols/api/ontologies/ordo/terms/http%253A%252F%252Fwww.orpha.net%252FORDO%252FOrphanet_950/graph")
 
+    var net=instance.getNetwork()
+    console.log(net)
 
-     /*This is wrapped in a timeOut function, so the data is loaded before this is executed! Be aware of asynchronious behavior if strange things happen!*/
-    window.setTimeout(function(){
-      console.log("Following are objects that could be of interest")
-      console.log("List of extended Nodes")
-      console.log(instance.getExtendedNodes());
-      console.log("List of Relationships")
-      console.log(instance.getRelationships());
+    /*Instead of waiting like in example 4 - because that is stupid - we use now the network's startStabalizing event to execute the functions - see vis.js documentation for more on the network functions*/
+    net.on("startStabilizing", function(params){
+    console.log("Following are objects that could be of interest")
+    console.log("List of extended Nodes")
+    console.log(instance.getExtendedNodes());
+    console.log("List of Relationships")
+    console.log(instance.getRelationships());
 
-      console.log("Get the whole DataSet that defines the graph and manipulate it!")
-      var x=instance.getGraphDataset()
-      console.log(x);
-      //Be aware that dataSets update automatically. Therefore no setGraphDataset is necessary! Also keep in mind that here you can destroy the funcionality of the network!
-      //Be aware that x is a vis.js dataSet - To manipulate you have to use respective methods! See http://visjs.org/docs/data/dataset.html
-      x["nodes"].update({id: "http://purl.obolibrary.org/obo/CHEBI_33839", label: "This LABEL was changed after the dataset was loaded initially!"})
-    },3000);
+    console.log("Get the whole DataSet that defines the graph and manipulate it!")
+    var x=instance.getGraphDataset()
+    console.log(x);
+    //Be aware that dataSets update automatically. Therefore no setGraphDataset is necessary! Also keep in mind that here you can destroy the funcionality of the network!
+    //Be aware that x is a vis.js dataSet - To manipulate you have to use respective methods! See http://visjs.org/docs/data/dataset.html
+    x["nodes"].update({id: "http://purl.obolibrary.org/obo/CHEBI_33839", label: "This LABEL was changed after the dataset was loaded initially!"})
+
+  })
+
 
 
 </script>
