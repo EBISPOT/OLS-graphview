@@ -1,4 +1,7 @@
 # Recent updates:
+## 02-10-2017:
+- Editing the example calls to use https instead of http calls to OLS.
+
 ## 16-05-2017
   - Adding a new function to overwrite - getGraphDataset() - and a new example to demonstrate the evil things you can do with this functionality
 
@@ -45,6 +48,8 @@ There are multiple ways to install the plugin:
   - The widget is listed on the <a href="http://www.biojs.io">bio.js website</a> where you could find other interesting visualisation for biological data
 
 # How to start to plugin
+**PLEASE MAKE SURE YOU USE HTTPS INSTEAD OF HTTP URLS IN THE FUTURE FOR EBI WEBSERVICE CALLS**
+
 ```
 var app = require("ols-graphview");
 var instance = new app();
@@ -200,7 +205,7 @@ var networkOptions = {
 
 # OLS - JSON structure:
 If the option OLS structure true is activated, the plugin expects a structure similar to the OLS REST API. This means that a first webservice call (e.g.;
-<a href="http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_33839">here</a> ) leads to a json which includes a link to the graph data. A second webservice call actually gets the graph data as json (e.g.: <a href="http://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph">here</a> ). To fetch data from other sources with a different structure is possible - check example 3. In this case the first webservice call is obmitted. However the plugin expects the same names/structure within the json response as demonstrated in the *second* webservice call: It is necessary to have a nodes and edges object. Nodes have to be given an id or iri, an edge is defined by a source, a target and a label of the edge. Please check the link a couple of lines above this to see the structure!
+<a href="https://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms?iri=http%3A%2F%2Fpurl.obolibrary.org%2Fobo%2FCHEBI_33839">here</a> ) leads to a json which includes a link to the graph data. A second webservice call actually gets the graph data as json (e.g.: <a href="https://www.ebi.ac.uk/ols/beta/api/ontologies/cmpo/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FCHEBI_33839/graph">here</a> ). To fetch data from other sources with a different structure is possible - check example 3. In this case the first webservice call is obmitted. However the plugin expects the same names/structure within the json response as demonstrated in the *second* webservice call: It is necessary to have a nodes and edges object. Nodes have to be given an id or iri, an edge is defined by a source, a target and a label of the edge. Please check the link a couple of lines above this to see the structure!
 
 # Contact
 Please <a href="https://github.com/LLTommy/OLS-graphview">use github</a> to report **bugs**, discuss potential **new features** or **ask questions** in general.
