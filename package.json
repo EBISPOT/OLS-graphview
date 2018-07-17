@@ -1,23 +1,23 @@
 {
   "name": "ols-graphview",
   "description": "This widget is a flexible and dynamic ontology visualisation. It can be seen in action on the new Ontology Lookup Service (OLS) provided by the EMBL-EBI.",
-  "version": "0.1.94",
-  "homepage": "https://github.com/LLTommy/ols-graphview",
+  "version": "0.1.95",
+  "homepage": "https://github.com/EBISPOT/ols-graphview",
   "author": {
     "name": "lltommy",
-    "email": "lltommy@felix-solution.com"
+    "email": "ontology-tools-support@ebi.ac.uk"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/LLTommy/ols-graphview.git"
+    "url": "git://github.com/EBISPOT/ols-graphview.git"
   },
   "bugs": {
-    "url": "https://github.com/LLTommy/ols-graphview/issues"
+    "url": "https://github.com/EBISPOT/ols-graphview/issues"
   },
   "licenses": [
     {
       "type": "Apache-2.0",
-      "url": "https://github.com/LLTommy/ols-graphview/blob/master/LICENSE"
+      "url": "https://github.com/EBISPOT/ols-graphview/blob/master/LICENSE"
     }
   ],
   "main": "lib/index.js",
