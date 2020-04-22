@@ -60703,24 +60703,24 @@ exports["default"] = FloydWarshall;
 
 
  	function initializeIButtonBox(){
- 		var htmlString='<div id="buttonBoxWrapper"><div id="buttonBox"><input id="Cluster" class="btn btn-default" type="submit" title="Click this button to cluster nodes by relationship and parent. Clusters help you to have a clear view if many nodes are expended!" value="Create clusters"/>';
- 		htmlString+='<input id="UnCluster" class="btn btn-default" type="submit" title="Click this button to open all clusters - this has only and effect in case you clustered nodes before!" value="Open all clusters" />';
- 		htmlString+='<input id="TogglePhysics" class="btn btn-default" type="submit" title="Click this button to turn on or off the physic engine. With physics turned off you can freely drag nodes around the screen and position them the way you like it." value="Auto rearrange on"/>';
- 		htmlString+='<input id="ChangeLayout" class="btn btn-default" type="submit" title="Click this button to switch between dynamic and hierarchical layout" value="Hierarchical layout"/>';
- 		htmlString+='<input id="LookUpNodeTextfield" title="You can search for a node in the graph, enter its label here!" type="text" placeholder="Search node"/> <input id="LookUpNodeButton" title="Click this button to find a node after you typed its label in the textfield" class="btn btn-default" type="submit" value="Search Node"/></div></div>';
+ 		var htmlString='<div class="ols-graphview-button-box-wrapper"><div class="ols-graphview-button-box"><input class="ols-graphview-cluster" class="ols-graphview-button" type="submit" title="Click this button to cluster nodes by relationship and parent. Clusters help you to have a clear view if many nodes are expended." value="Create clusters"/>';
+ 		htmlString+='<input class="ols-graphview-uncluster" class="btn btn-default" type="submit" title="Click this button to open all clusters - this has only and effect in case you clustered nodes before." value="Open all clusters" />';
+ 		htmlString+='<input class="ols-graphview-toggle-physics" class="btn btn-default" type="submit" title="Click this button to turn on or off the physics engine. With physics turned off you can freely drag nodes around the screen and position them the way you like it." value="Auto rearrange on"/>';
+ 		htmlString+='<input class="ols-graphview-change-layout" class="btn btn-default" type="submit" title="Click this button to switch between dynamic and hierarchical layout" value="Hierarchical layout"/>';
+ 		htmlString+='<input class="ols-graphview-lookup-node-text-field" title="Enter a label here to search for a node in the graph" type="text" placeholder="Search node"/> <input class="ols-graphview-lookup-node-button" title="Click this button to find a node after you typed its label in the textfield" class="btn btn-default" type="submit" value="Search Node"/></div></div>';
  		mainDiv.append(htmlString);
 
  		/*Onclick handler for Buttons */
- 		jQuery("#Cluster").on("click", cluster);
- 		jQuery("#UnCluster").on("click", unclusterAllNodes);
- 		jQuery("#TogglePhysics").on("click", togglePhysics);
- 		jQuery("#ChangeLayout").on("click", changeLayout);
+ 		jQuery(".ols-graphview-cluster").on("click", cluster);
+ 		jQuery(".ols-graphview-uncluster").on("click", unclusterAllNodes);
+ 		jQuery(".ols-graphview-toggle-physics").on("click", togglePhysics);
+ 		jQuery(".ols-graphview-change-layout").on("click", changeLayout);
 
  		/*
  		 * As soon as the user focuses on the Textfield, a list for autocompletion is build. The list contains all nodes of the current graph
  		 */
- 		var awesomplete=new Awesomplete(document.getElementById("LookUpNodeTextfield"), {list:[], minChars:1, autoFirst:true});
- 		jQuery("#LookUpNodeTextfield").on("focus", function(){
+ 		var awesomplete=new Awesomplete(document.getElementsByClassName("ols-graphview-lookup-node-text-field")[0], {list:[], minChars:1, autoFirst:true});
+ 		jQuery(".ols-graphview-lookup-node-text-field").on("focus", function(){
 
  			//Construct an list of all nodes/ids that are shown in the Graph
  			var list=[];
@@ -60732,8 +60732,8 @@ exports["default"] = FloydWarshall;
  			awesomplete.list = list;
  		});
 
- 		jQuery("#LookUpNodeButton").on("click", function(){
- 			var LookUpNodeTextfield=jQuery("#LookUpNodeTextfield");
+ 		jQuery(".ols-graphview-lookup-node-text-button").on("click", function(){
+ 			var LookUpNodeTextfield=jQuery(".ols-graphview-lookup-node-text-field");
  			var nodeToFocus=autoCompleteList[LookUpNodeTextfield.val()];
  			//IF length===1 then the we can zoom to the node (it is not part of a cluster). Focus the node and show the information about the cluster
  			if (network.findNode(nodeToFocus).length===1)
@@ -60758,28 +60758,28 @@ exports["default"] = FloydWarshall;
 
 
  	function initializeInfoWindow(){
- 		var htmlString='<div id="SecondWindow"><div id="infoWindow"><h6>Welcome to the ontology visualisation!</h6></div>'
-    htmlString+='<div id="infoWindowSub">This tool should help you to explore an ontology in a different way. Some notes:<br>- This window is updated whenever you select a node or edge of the graph, showing you the description and all other available information<br>- You can interact with the graph. Use the buttons on the bottom of this window as well as below the graph to do so. Double clicking on a node expands the node<br>-All buttons and other elements of the page show tooltips! Make use of this function if you are unsure of a functionality!<br>- If you need further help, please visit the documentation page!</div></div>';
+ 		var htmlString='<div class="ols-graphview-second-window"><div class="ols-graphview-info-window"><h6>Welcome to the ontology visualisation!</h6></div>'
+    htmlString+='<div class="ols-graphview-info-window-sub">This tool should help you to explore an ontology in a different way. Some notes:<br>- This window is updated whenever you select a node or edge of the graph, showing you the description and all other available information<br>- You can interact with the graph. Use the buttons on the bottom of this window as well as below the graph to do so. Double clicking on a node expands the node<br>-All buttons and other elements of the page show tooltips. Make use of this function if you are unsure of a functionality.<br>- If you need further help, please visit the documentation page.</div></div>';
 
     // Adding two checkboxes to change the nodelabel to iri/label
     if (networkOptions.displayOptions.showPermaLinkBox===true){
-      htmlString+='<div id="labelPermaLinkBox" style="text-align:center;" title="Decide if you want to display the the label, the short id or both as title of the nodes!">';
-      htmlString+='<div id="Permaanwser" style="text-align:center;"><input id="Permalink" title="Get a static URL of this graph - so you can return or share it" class="btn btn-default" type="submit" value="Get permalink to this graph"/></div>';
-      htmlString+="<hr style='margin-left: 50px; margin-right:50px'/>Show label <input type='checkbox' id='label' checked> ";
-      htmlString+="Show id <input type='checkbox' id='iri' checked><hr style='margin-left: 50px; margin-right:50px'/></div>";
+      htmlString+='<div class="ols-graphview-label-permalink-box" style="text-align:center;" title="Decide if you want to display the the label, the short id or both as title of the nodes!">';
+      htmlString+='<div class="ols-graphview-perma-answer" style="text-align:center;"><input class="ols-graphview-permalink" title="Get a static URL of this graph - so you can return or share it" class="btn btn-default" type="submit" value="Get permalink to this graph"/></div>';
+      htmlString+="<hr style='margin-left: 50px; margin-right:50px'/>Show label <input type='checkbox' class='ols-graphview-label' checked> ";
+      htmlString+="Show id <input type='checkbox' class='ols-graphview-iri' checked><hr style='margin-left: 50px; margin-right:50px'/></div>";
     }
 
     mainDiv.append(htmlString);
 
     //Adding listener to label/iri
-    jQuery('#iri').on("click", function(event){
-      var val=jQuery('#iri').prop('checked')
+    jQuery('.ols-graphview-iri').on("click", function(event){
+      var val=jQuery('.ols-graphview-iri').prop('checked')
       networkOptions.appearance.nodeShowShortId=val;
       adjustLabel();
     })
 
-    jQuery('#label').on("click", function(event){
-      var val=jQuery('#label').prop('checked')
+    jQuery('.ols-graphview-label').on("click", function(event){
+      var val=jQuery('.ols-graphview-label').prop('checked')
       networkOptions.appearance.nodeShowLabel=val;
       adjustLabel();
     })
@@ -60791,7 +60791,7 @@ exports["default"] = FloydWarshall;
          root.forEach(function(e){
            rootNodes+=e+"&&";
          });
-         jQuery("#Permaanwser").html('<style="text-align:center;"><input type="text" title="Copy and paste this link to return to this graph! You can easly share it via email as well!" name="Permalink" value="'+rootNodes+'">')
+         jQuery(".ols-graphview-perma-answer").html('<style="text-align:center;"><input type="text" title="Copy and paste this link to return to this graph! You can easly share it via email as well!" name="Permalink" value="'+rootNodes+'">')
        });
 
 
@@ -60893,7 +60893,7 @@ exports["default"] = FloydWarshall;
  	 */
  	function changeLayout(){
  		var options={};
- 		if (jQuery("#ChangeLayout").val()==="Hierarchical layout")
+ 		if (jQuery(".ols-graphview-change-layout").val()==="Hierarchical layout")
  		{
       LoadingAnimation=true;
 
@@ -60908,8 +60908,8 @@ exports["default"] = FloydWarshall;
       network.setOptions(networkOptions.hierarchicalLayoutVisOptions);
 
  			//Since REACTIVATING the dynamic layout activates physic, we have to change the text of the physic button here
- 			jQuery("#TogglePhysics").val("Auto rearrange on");
- 			jQuery("#ChangeLayout").val("Dynamic layout");
+ 			jQuery(".ols-graphview-toggle-physics").val("Auto rearrange on");
+ 			jQuery(".ols-graphview-change-layout").val("Dynamic layout");
  		}
 
  		else
@@ -60919,7 +60919,7 @@ exports["default"] = FloydWarshall;
  			//options = {layout: {   hierarchical:{enabled: false} }  };
  			//network.setOptions(options);
       network.setOptions(visNetworkOptions);
- 			jQuery("#ChangeLayout").val("Hierarchical layout");
+ 			jQuery(".ols-graphview-change-layout").val("Hierarchical layout");
  		}
  		//Try to fit the network after layout change
  	//	network.fit();
@@ -60932,11 +60932,11 @@ exports["default"] = FloydWarshall;
  	 */
  	function togglePhysics(){
  		var options={};
- 		if (jQuery("#TogglePhysics").attr("value")==="Auto rearrange on")	{
- 			jQuery("#TogglePhysics").val("Auto rearrange off");
+ 		if (jQuery(".ols-graphview-toggle-physics").attr("value")==="Auto rearrange on")	{
+ 			jQuery(".ols-graphview-toggle-physics").val("Auto rearrange off");
  			options={physics: {"enabled": false}}; network.setOptions(options);	}
  		else {
- 			jQuery("#TogglePhysics").val("Auto rearrange on");
+ 			jQuery(".ols-graphview-toggle-physics").val("Auto rearrange on");
  			options={physics: {"enabled": true}}; network.setOptions(options);}
  	}
 
@@ -61255,7 +61255,7 @@ return  x=tmpstring.replace("/","_");
  				var linkToGraph=data2._embedded.terms[0]._links.graph.href;
  				//This unfocus the textfield. This is done because focusing into the textfield triggers an update of the autocomplete list
  				//If new data is fetched, the texfield is therefore unfocused with the blur event. Re-entering it updates the autocompelte list
- 				jQuery("#LookUpNodeTextfield").blur();
+ 				jQuery(".ols-graphview-lookup-node-text-field").blur();
  				fetchGraphData(linkToGraph);
 
  			}).fail(function (){printMsgToScreen("Failed to do the webservice call! Is the server down? Tried to reach: "+networkOptions.webservice.URL+term);})
@@ -61285,19 +61285,19 @@ return  x=tmpstring.replace("/","_");
  	function initializeNetwork()
  	{
 
- 		htmlString='<div id="vis_network" style="height:200px; display:none"></div>';
+ 		htmlString='<div class="ols-graphview-vis-network" style="height:200px; display:none"></div>';
 
     //Add a "spinner" loading div in case the option says so
     if (networkOptions.loadingBar.initialLoadingPicture){
-      htmlString+='<div id="spinner"><img id="loadingIMG" alt="Loading..." src="'+networkOptions.loadingBar.pictureURL+'"></div>'
+      htmlString+='<div class="ols-graphview-spinner"><img class="ols-graphview-loading-image" alt="Loading..." src="'+networkOptions.loadingBar.pictureURL+'"></div>'
     }
 
-    htmlString+='<div id="Legend"></div>';
+    htmlString+='<div class="ols-graphview-legend"></div>';
     mainDiv.append(htmlString);
- 		var container = document.getElementById('vis_network');
+ 		var container = document.getElementsByClassName('ols-graphview-vis-network')[0];
 
  		//get the height of the available div and start the network with it
- 		//var height=jQuery("#vis_network").height()+"px";
+ 		//var height=jQuery(".ols-graphview-vis-network").height()+"px";
 
  		network = new vis.Network(container, graphdataset, visNetworkOptions);
 
@@ -61308,16 +61308,16 @@ return  x=tmpstring.replace("/","_");
     network.on("startStabilizing", function(params){
         //If the status of the vis is calling for loading bar, show it (e.g. changing from dynamic to hierarchical layout)
         if (LoadingAnimation===true){
-          $("#vis_network").hide();
-          $("#spinner").show();
+          $(".ols-graphview-vis-network").hide();
+          $(".ols-graphview-spinner").show();
         }
       })
 
     network.on('stabilized', function(params){
       //Network is stable and the animation is running, so hide the spinner and show the network
       if (LoadingAnimation===true){
-        $("#spinner").hide();
-        $("#vis_network").show();
+        $(".ols-graphview-spinner").hide();
+        $(".ols-graphview-vis-network").show();
         LoadingAnimation=false;
         network.fit();  //Make the network fit after it is stabilized
         }
@@ -61326,7 +61326,7 @@ return  x=tmpstring.replace("/","_");
 
     //In case we are not waiting for the animation, display the network right away
     else{
-        $("#vis_network").show();
+        $(".ols-graphview-vis-network").show();
     }
 
 
@@ -61435,21 +61435,21 @@ return  x=tmpstring.replace("/","_");
  	function showEdgeInfo(edgeId){
  		var twoNodesArray=network.getConnectedNodes(edgeId);
 
- 		jQuery("#infoWindow").html("<h6>Edge selected</h6>");
- 		jQuery("#infoWindowSub").empty();
+ 		jQuery(".ols-graphview-info-window").html("<h6>Edge selected</h6>");
+ 		jQuery(".ols-graphview-info-windowSub").empty();
 
  //Edge connects 2 normal nodes
  		if (nodes.get(twoNodesArray[0])!==null && nodes.get(twoNodesArray[1])!==null)
- 			jQuery("#infoWindowSub").append("This edge connects the node <strong>"+nodes.get(twoNodesArray[0]).label+"</strong> with the node <strong>"+nodes.get(twoNodesArray[1]).label+"</strong>");
+ 			jQuery(".ols-graphview-info-window-sub").append("This edge connects the node <strong>"+nodes.get(twoNodesArray[0]).label+"</strong> with the node <strong>"+nodes.get(twoNodesArray[1]).label+"</strong>");
  //One side of the edge is a cluster, so we get null as result and have to change our response to that
  		else
  		{
  			if (nodes.get(twoNodesArray[0])!==null)
  			{
- 				jQuery("#infoWindowSub").append("This edge connects the node <strong>"+nodes.get(twoNodesArray[0]).label+"</strong> with a <strong>cluster</strong>");
+ 				jQuery(".ols-graphview-info-window-sub").append("This edge connects the node <strong>"+nodes.get(twoNodesArray[0]).label+"</strong> with a <strong>cluster</strong>");
  			}
  			if (nodes.get(twoNodesArray[1])!==null)
- 				jQuery("#infoWindowSub").append("This edge connects a <strong>cluster</strong> with the node <strong>"+nodes.get(twoNodesArray[1]).label+"</strong>");
+ 				jQuery(".ols-graphview-info-window-sub").append("This edge connects a <strong>cluster</strong> with the node <strong>"+nodes.get(twoNodesArray[1]).label+"</strong>");
  		}
 
 
@@ -61459,20 +61459,20 @@ return  x=tmpstring.replace("/","_");
  	 * This function can provide information about a selected cluster
  	 */
  	function showClusterInfo(clusterId){
- 		var infoWindowSub=jQuery("#infoWindowSub");
- 		jQuery("#infoWindow").html("<h6>The selected cluster contains the following nodes</h6>");
+ 		var infoWindowSub=jQuery(".ols-graphview-info-window-sub");
+ 		jQuery(".ols-graphview-info-window").html("<h6>The selected cluster contains the following nodes</h6>");
  		infoWindowSub.empty();
  		var htmlString="";
 
  		htmlString="<i>Click on the node label to fetch data for this node and update the graph</i><br><br>";
 
  		network.getNodesInCluster(clusterId).forEach(function(e){
- 			htmlString+="- <a class='clusterLink' data="+e+" href="+parseIRI(e)+">"+graphdataset.nodes.get(e).label+"</a> <small>("+parseIRI(e)+")</small><br>";
+ 			htmlString+="- <a class='.ols-graphview-cluster-link' data="+e+" href="+parseIRI(e)+">"+graphdataset.nodes.get(e).label+"</a> <small>("+parseIRI(e)+")</small><br>";
  		});
 
  		htmlString+='<br><br><br><hr style="margin-left: 79px; margin-right:84px"/>';
- 		htmlString+='<div style="text-align:center;"><input id="ExpandClusterButton" class="btn btn-default" type="submit" title="Click here to uncluster this cluster. The same result can be achieved by double clicking on a cluster in the graph!" value="Expand this cluster"/> ';
- 		htmlString+='<input id="FocusOnCluster" class="btn btn-default" type="submit" title="Click this button to zoom to the selected node" value="Zoom to this cluster"/> ';
+ 		htmlString+='<div style="text-align:center;"><input class="ols-graphview-expand-cluster-button" class="btn btn-default" type="submit" title="Click here to uncluster this cluster. The same result can be achieved by double clicking on a cluster in the graph!" value="Expand this cluster"/> ';
+ 		htmlString+='<input class="ols-graphview-focus-on-cluster" class="btn btn-default" type="submit" title="Click this button to zoom to the selected node" value="Zoom to this cluster"/> ';
 
  		infoWindowSub.append(htmlString);
 
@@ -61492,7 +61492,7 @@ return  x=tmpstring.replace("/","_");
  		});
 
 
- 		jQuery("#FocusOnCluster").on("click", function() {
+ 		jQuery(".ols-graphview-focus-on-cluster").on("click", function() {
 
  			//network.focus(clusterId, ZoomOptions)
 
@@ -61504,7 +61504,7 @@ return  x=tmpstring.replace("/","_");
 
 
 
- 		jQuery("#ExpandClusterButton").on("click", function() {  unclusterSingleCluster(clusterId);})
+ 		jQuery(".ols-graphview-expand-cluster-button").on("click", function() {  unclusterSingleCluster(clusterId);})
 
  	}
 
@@ -61518,7 +61518,7 @@ return  x=tmpstring.replace("/","_");
  		jQuery.getJSON(networkOptions.webservice.URL+id, function(inputdata){
  			var data=inputdata._embedded.terms[0];
 
- 			jQuery("#infoWindow").html("<h6>"+data.label+"</h6>");
+ 			jQuery(".ols-graphview-info-window").html("<h6>"+data.label+"</h6>");
 
  			//Check if the term is obsolete and if so, tell that to the user!
  			var htmlString="";
@@ -61548,18 +61548,18 @@ return  x=tmpstring.replace("/","_");
  			htmlString+="<br><i><strong>Short id:</strong></i> "+data.short_form+" (<i>iri: </i><small>"+data.iri+"</small>)";
 
  			htmlString+='<br><br><br><hr style="margin-left: 79px; margin-right:84px"/>';
- 			htmlString+='<div style="text-align:center;"><input id="ExpandNodeButton" class="btn btn-default" type="submit" title="Click here to expand this node. The same result can be achieved by double clicking on a node in the graph!" value="Expand this node"/> ';
- 			htmlString+='<input id="FocusOnNode" class="btn btn-default" type="submit" title="Click this button to zoom to the selected node" value="Zoom to this node"/> ';
+ 			htmlString+='<div style="text-align:center;"><input class="ols-graphview-expand-node-button" class="btn btn-default" type="submit" title="Click here to expand this node. The same result can be achieved by double clicking on a node in the graph!" value="Expand this node"/> ';
+ 			htmlString+='<input class="ols-graphview-focus-on-node" class="btn btn-default" type="submit" title="Click this button to zoom to the selected node" value="Zoom to this node"/> ';
 
       /**** To be removed, if we don't want to have this here*/
       //htmlString+='<input id="childrenListen" class="btn btn-default" type="submit" title="Show list of all children" value="ShowChildren"/>'
       /*****///
 
-      htmlString+='<input id="goToOLS" class="btn btn-default" type="submit" title="Click here to go to the OLS page of this term" value="Find this term in OLS"/></div>';
+      htmlString+='<input class="ols-graphview-go-to-ols" class="btn btn-default" type="submit" title="Click here to go to the OLS page of this term" value="Find this term in OLS"/></div>';
 
- 			jQuery("#infoWindowSub").html(htmlString);
+ 			jQuery(".ols-graphview-info-window-sub").html(htmlString);
 
- 			jQuery("#FocusOnNode").on("click", function() {
+ 			jQuery(".ols-graphview-focus-on-node").on("click", function() {
  				var tmpNode=network.getSelection().nodes;
  				if (tmpNode.length!=0)
  					network.focus(tmpNode[0], networkOptions.ZoomOptions)
@@ -61567,7 +61567,7 @@ return  x=tmpstring.replace("/","_");
 
 
 
- 			jQuery("#ExpandNodeButton").on("click", function() {
+ 			jQuery(".ols-graphview-expand-node-button").on("click", function() {
  				//Same functionality as in network.on("doubleclick")
  				//Open a Cluster after double click
  				if (network.isCluster(nodeId))
@@ -61582,7 +61582,7 @@ return  x=tmpstring.replace("/","_");
  			});
 
 
- 			jQuery("#goToOLS").on("click", function () {
+ 			jQuery(".ols-graphview-go-to-ols").on("click", function () {
  				var termURL=document.URL;
  				window.open(termURL.substring(0,termURL.indexOf("/graph"))+"?iri="+encodeURIComponent(nodeId));})
 
@@ -61684,21 +61684,21 @@ return  x=tmpstring.replace("/","_");
  	 * - Updates the Legend div of the html e.g. relationships
  	 */
  	function updateLegend(){
- 		var Legend=jQuery("#Legend");
+ 		var Legend=jQuery(".ols-graphview-legend");
  		Legend.empty();
  		var tmp="";
 
  //Preparing the html of the Legend - which means adding the table, the relationship names, the canvas as well as the check boxes for every table row
  		tmp+='<h6 title="How are relationships and colours connected">Legend</h6>';
  		tmp+='<table><tbody><tr><td><strong title="List of relationships that is displayed in the graph">Relationship</strong></td><td><strong title="The color a certain relationship is represented by">Color</strong></td><td><strong title="You can change the visibility of relationship types ">Visibility</strong></td></tr>';
- 		tmp+='<tr><td title="Relationships in between extended nodes are special - those relationships are always visible!">Extended nodes (*)</td><td><canvas id="canvas_root" width="30" height="15"></canvas></td><td>-</td></tr>';
+ 		tmp+='<tr><td title="Relationships in between extended nodes are special - those relationships are always visible!">Extended nodes (*)</td><td><canvas id="ols-graphview-canvas-root" width="30" height="15"></canvas></td><td>-</td></tr>';
 
  		relationships.forEach(function(e){
- 			tmp+="<tr><td>"+e+'</td><td><canvas id="canvas_'+e+'" width="30" height="15"></canvas></td><td><input type="checkbox" class="Legendoptions" name="'+e+'" id="visible_'+cleanUpRelationshipLabels(e)+'" checked></td></tr>';
+ 			tmp+="<tr><td>"+e+'</td><td><canvas id="ols-graphview-canvas-'+e+'" width="30" height="15"></canvas></td><td><input type="checkbox"  name="'+e+'" class="ols-graphview-legend-options ols-graphview-visible-'+cleanUpRelationshipLabels(e)+'" checked></td></tr>';
  		});
 
  //Add a Deselect all Box (Do we even need it?)
- 		tmp+='<tr><td title="This option is useful if you only want to display the path you extended! Or revert the effect and display everything!">Select/Deselect all</td><td></td><td><input type="checkbox" id="special" unchecked></td></tr>';
+ 		tmp+='<tr><td title="This option is useful if you only want to display the path you extended. Or, revert the effect and display everything.">Select/Deselect all</td><td></td><td><input type="checkbox" class="ols-graphview-special" unchecked></td></tr>';
 
  		tmp+="</tbody></table>";
 
@@ -61716,13 +61716,13 @@ return  x=tmpstring.replace("/","_");
  		Legend.append(tmp);
 
  //Color the root canvas
- 		var c=document.getElementById("canvas_root").getContext("2d");
+ 		var c=document.getElementById("ols-graphview-canvas-root").getContext("2d");
  		c.fillStyle=networkOptions.rootNode.color.background;
  		c.fillRect(0,0,350,100);
 
  //After appending the legend, the colours have to be adjusted according to the colorMap
  		relationships.forEach(function(e){
- 			var c=document.getElementById("canvas_"+e).getContext("2d");
+ 			var c=document.getElementById("ols-graphview-canvas-"+e).getContext("2d");
 
  			if (networkOptions.appearance.colorMap.length>=relationships.length)
  				c.fillStyle=networkOptions.appearance.colorMap[indexof(relationships,e)];
@@ -61735,9 +61735,9 @@ return  x=tmpstring.replace("/","_");
       relationships.forEach(function(e){
         if (e!=="is a")
         {
-          var tmpid='visible_'+cleanUpRelationshipLabels(e)
+          var tmpid='ols-graphview-visible-'+cleanUpRelationshipLabels(e)
           updateDataView(e,false);
-          jQuery("#"+tmpid).prop('checked', false)
+          jQuery("."+tmpid).prop('checked', false)
         }
 
       });
@@ -61748,8 +61748,8 @@ return  x=tmpstring.replace("/","_");
       /* */
 
  			//Register event handler for visibility
- 			jQuery('#visible_'+cleanUpRelationshipLabels(e)).on("click", function(event){
- 				var target=jQuery("#"+event.target.id);
+ 			jQuery('.ols-graphview-visible-'+cleanUpRelationshipLabels(e)).on("click", function(event){
+ 				var target=jQuery(event.target);
  				var tmpID=target.attr("name");
  				var checked=target.is(':checked');
  				updateDataView(tmpID,checked);
@@ -61757,16 +61757,16 @@ return  x=tmpstring.replace("/","_");
 
 
  			//EventHandler for click on SelectDeselect all checkbox. Selects//deselects all relationships and starts the updateDataView function for each relationship
- 			jQuery('#special').on("click", function(event){
- 				if(jQuery('#special').prop("checked"))
+ 			jQuery('.ols-graphview-special').on("click", function(event){
+ 				if(jQuery('.ols-graphview-special').prop("checked"))
  				{
- 					jQuery('input:checkbox.Legendoptions').prop('checked', false );
-          jQuery.map(jQuery(".Legendoptions"), function(e){ updateDataView(e.name, false)});
+ 					jQuery('input:checkbox.ols-graphview-legend-options').prop('checked', false );
+          jQuery.map(jQuery(".ols-graphview-legend-options"), function(e){ updateDataView(e.name, false)});
         }
  				else
  				{
- 					jQuery('input:checkbox.Legendoptions').prop('checked',true);
-          jQuery.map(jQuery(".Legendoptions"), function(e){ updateDataView(e.name, true)});
+ 					jQuery('input:checkbox.ols-graphview-legend-options').prop('checked',true);
+          jQuery.map(jQuery(".ols-graphview-legend-options"), function(e){ updateDataView(e.name, true)});
         }
  			})
  		});
